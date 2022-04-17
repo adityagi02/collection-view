@@ -13,7 +13,15 @@ private let identifier: String = "MovieCell"
 class TrendingMoviesViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    var movies: [Movie]?
+    
+    var movies: [Movie]? {
+           didSet{
+               if let movie = movies {
+                   return
+               }
+           }
+       }
+
     var page: Int = 1
     private var totalPages: Int = 0
     
@@ -74,11 +82,9 @@ extension TrendingMoviesViewController: UICollectionViewDataSource, UICollection
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let DetailViewController = segue.destination as! DetailViewController
-         /* ----------------------------------------- */
-    }
+
     
+ 
     
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

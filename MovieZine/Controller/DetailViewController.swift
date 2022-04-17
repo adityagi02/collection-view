@@ -15,7 +15,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var movieDescription: UILabel!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
