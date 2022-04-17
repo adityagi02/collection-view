@@ -14,7 +14,7 @@ class TrendingMoviesViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     var movies: [Movie]?
-     var page: Int = 1
+    var page: Int = 1
     private var totalPages: Int = 0
     
     
@@ -71,6 +71,12 @@ extension TrendingMoviesViewController: UICollectionViewDataSource, UICollection
         if indexPath.item == count - 1 {
             self.loadMoreData()
         }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let DetailViewController = segue.destination as! DetailViewController
+        DetailViewController.movieTitle = movies.
     }
     
     

@@ -21,15 +21,6 @@ class DetailViewController: UIViewController {
         
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let trailerurl = trailerURL
-    }
-  
-}
-
-var trailerID: TrailerData? {
-    
 }
 extension String{
     var trailerURL: URL? {

@@ -13,7 +13,7 @@ private let baseURL = "https://api.themoviedb.org/3/movie/"
 let posterURL = "https://image.tmdb.org/t/p/original"
 let backdropURL = "https://image.tmdb.org/t/p/original"
 var videoURL: String = "https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=\(apiKey)&language=en-US"
-private let coder = JSONDecoder()
+let coder = JSONDecoder()
 
 class API {
     
