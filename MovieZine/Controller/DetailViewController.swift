@@ -33,7 +33,7 @@ var trailerID: TrailerData? {
 }
 extension String{
     var trailerURL: URL? {
-        return URL(string: "\(videoURL)/\(trailerID?.results)/videos?api_key=\(apiKey)\(self)")
+        return URL(string: "\(videoURL)/\(String(describing: trailerID?.results))/videos?api_key=\(apiKey)\(self)")
     }
 }
 

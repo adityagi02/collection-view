@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct Movie: Decodable {
     let adult: Bool
     let backdropPath: String
     let genreIDS: [Int]
@@ -37,6 +37,25 @@ struct Movie: Codable {
 }
 
 
+struct MovieVideoResponse: Decodable {
+    
+    let results: [MovieVideo]
+}
+
+struct MovieVideo: Decodable, Identifiable {
+    
+    let id: String
+    let key: String
+    let name: String
+    let site: String
+    
+    var youtubeURL: URL? {
+        guard site == "YouTube" else {
+            return nil
+        }
+        return URL(string: "https://youtube.com/watch?v=\(key)")
+    }
+}
 enum OriginalLanguage: String, Codable {
     case en = "en"
     case fr = "fr"

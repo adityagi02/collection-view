@@ -7,13 +7,13 @@
 
 import UIKit
 
-private let identifier = "MovieCell"
+private let identifier: String = "MovieCell"
 
 
 class TrendingMoviesViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-     var movies: [Movie]
+    var movies: [Movie]?
      var page: Int = 1
     private var totalPages: Int = 0
     
@@ -27,11 +27,12 @@ class TrendingMoviesViewController: UIViewController {
         }
     
      func fetch(_ page: Int = 1) {
-        API.fetchTrendingMovies(page) { data in
-            self.totalPages = data.totalPages
-        self.movies = data.results
-        self.collectionView.reloadData()
-       }
+         API.fetchTrendingMovies(self.page) { data in
+             self.movies! += data.results
+                DispatchQueue.main.async {
+                  self.collectionView.reloadData()
+                }
+        }
     }
     
      func loadMoreData(){
@@ -54,9 +55,9 @@ extension TrendingMoviesViewController: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! MovieCollectionViewCell
-        cell1.movie = movies?[indexPath.item]
+        cell1.movie = movies![indexPath.item]
         let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "UnpopularMovieCell", for: indexPath) as! UnpopularMovieCollectionViewCell
-        cell2.Unpopularmovie = movies?[indexPath.item]
+        cell2.Unpopularmovie = movies![indexPath.item]
         if cell1.movie!.voteAverage < 7 {
             return cell2
         }else {
@@ -72,15 +73,16 @@ extension TrendingMoviesViewController: UICollectionViewDataSource, UICollection
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let tmovieTitle = movies.title
-        let movieID = movies.
-        if segue.identifier == "showMovieDetail"{
-            guard let sendTomovieDetailController = segue.destination as? DetailViewController else {
-              return
-            }
-            sendTomovieDetailController.title = tmovieTitle
-            sendTomovieDetailController.videoPoster = movie?.backdropPath
-        }
-    }
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let tmovieTitle = Movie.self
+//        if segue.identifier == "showMovieDetail"{
+//            guard let sendTomovieDetailController = segue.destination as? DetailViewController else {
+//              return
+//            }
+//            sendTomovieDetailController.title = tmovieTitle
+//            sendTomovieDetailController.videoPoster = movie?.backdropPath
+//        }
+//   }
 }
