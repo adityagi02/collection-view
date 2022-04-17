@@ -76,7 +76,7 @@ extension TrendingMoviesViewController: UICollectionViewDataSource, UICollection
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let DetailViewController = segue.destination as! DetailViewController
-        DetailViewController.movieTitle = movies.
+         /* ----------------------------------------- */
     }
     
     
